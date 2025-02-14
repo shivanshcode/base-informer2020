@@ -257,7 +257,7 @@ class Exp_Informer(Exp_Basic):
 
     def _process_one_batch(self, dataset_object, batch_x, batch_y, batch_x_mark, batch_y_mark):
         batch_x = batch_x.float().to(self.device)
-        print(f'Shape of Input and Output: {batch_x.shape}    {batch_y.shape},     Location: exp_informer/_process_one_batch', flush=True)
+        #print(f'Shape of Input and Output: {batch_x.shape}    {batch_y.shape},     Location: exp_informer/_process_one_batch', flush=True)
         batch_y = batch_y.float()
 
         batch_x_mark = batch_x_mark.float().to(self.device)
