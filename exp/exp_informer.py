@@ -99,6 +99,7 @@ class Exp_Informer(Exp_Basic):
             shuffle=shuffle_flag,
             num_workers=args.num_workers,
             drop_last=drop_last)
+        print(f'DataLoader: {type(data_loader)}, {type(data_set)},     Location: Exp_informer/_get_data')
 
         return data_set, data_loader
 
