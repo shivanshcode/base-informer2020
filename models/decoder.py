@@ -18,7 +18,7 @@ class DecoderLayer(nn.Module):
         self.activation = F.relu if activation == "relu" else F.gelu
 
     def forward(self, x, cross, x_mask=None, cross_mask=None):
-        print(f'Decoder input shape: {x.size()}', flush=True)
+        #print(f'Decoder input shape: {x.size()}', flush=True)
         x = x + self.dropout(self.self_attention(
             x, x, x,
             attn_mask=x_mask
@@ -31,7 +31,7 @@ class DecoderLayer(nn.Module):
         )[0])
 
         y = x = self.norm2(x)
-        print(f'Decoder transposed x y shape: {y.transpose(-1,1).size()}', flush=True)
+        #print(f'Decoder transposed x y shape: {y.transpose(-1,1).size()}', flush=True)
         y = self.dropout(self.activation(self.conv1(y.transpose(-1,1))))
         y = self.dropout(self.conv2(y).transpose(-1,1))
 
