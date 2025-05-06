@@ -198,12 +198,19 @@ class Exp_Informer(Exp_Basic):
         
         preds = []
         trues = []
-        
+        batch_xs = []
+        batch_ys = []
+        batch_x_marks = []
+
+
         for i, (batch_x,batch_y,batch_x_mark,batch_y_mark) in enumerate(test_loader):
             pred, true = self._process_one_batch(
                 test_data, batch_x, batch_y, batch_x_mark, batch_y_mark)
             preds.append(pred.detach().cpu().numpy())
             trues.append(true.detach().cpu().numpy())
+            batch_xs.append(batch_x.detach().cpu().numpy())
+            batch_ys.append(batch_y.detach().cpu().numpy())
+            batch_x_marks.append(batch_x_mark.detach().cpu().numpy())
 
         preds = np.array(preds)
         trues = np.array(trues)
@@ -223,6 +230,9 @@ class Exp_Informer(Exp_Basic):
         np.save(folder_path+'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
         np.save(folder_path+'pred.npy', preds)
         np.save(folder_path+'true.npy', trues)
+        np.save(folder_path+'batch_x.npy', batch_xs)
+        np.save(folder_path+'batch_y.npy', batch_ys)
+        np.save(folder_path+'batch_x_marks.npy', batch_x_marks)
 
         return
 
