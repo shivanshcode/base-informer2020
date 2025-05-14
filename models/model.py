@@ -7,10 +7,7 @@ from models.encoder import Encoder, EncoderLayer, ConvLayer, EncoderStack
 from models.decoder import Decoder, DecoderLayer
 from models.attn import FullAttention, ProbAttention, AttentionLayer
 from models.embed import DataEmbedding
-
-import sys
-sys.path.append('../../')
-from RevIN import RevIN
+from utils.tools import RevIN
 
 
 class Informer(nn.Module):
@@ -19,7 +16,7 @@ class Informer(nn.Module):
                 dropout=0.0, attn='prob', embed='fixed', freq='h', activation='gelu', 
                 output_attention = False, distil=True, mix=True,
                 device=torch.device('cuda:0'),
-                use_RevIN=False):
+                use_RevIN=True):
         super(Informer, self).__init__()
         self.pred_len = out_len
         self.attn = attn
